@@ -5,10 +5,6 @@ var request = require('request');
 
 var api_url = process.env.API_HOST + '/api/status';
 
-router.get('/healthcheck', function(req, res) {
-  return res.status(200).send('OK');
-});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   request(
@@ -22,7 +18,7 @@ router.get('/', function(req, res, next) {
         return res.status(500).send('error running request to ' + api_url);
       } else {
         res.render('index', {
-          title: '3tier App' ,
+          title: 'Frontend' ,
           request_uuid: body.request_uuid,
           time: body.time
         });
