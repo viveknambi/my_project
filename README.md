@@ -1,9 +1,3 @@
-# 3Tier under Toptal devops
-
-This is the NodeJs 3Tier application under the devops practices for Toptal.
-
-3Tier taken from [namikp/node-3tier-app](https://git.toptal.com/namikp/node-3tier-app). Modifications made solely to make it properly deployable - no actual app
-code was modified.
 
 # Requirements
 
