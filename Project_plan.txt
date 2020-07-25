@@ -1,0 +1,17 @@
+Overall Plan
+-------------
+
+Use Terraform to build 2 EC2 instances of CentOS7 AMIs in AWS with appropriate subnets and public IP. One host to run Jenkins and the other one for application deployment.
+
+Create a Git repository in git hub and place all the code.
+
+Configure Jenkins to listen to git repo and use a docker compose file to build images of web, api and db. 
+Jenkins use Ansible to upload the images to a docker hub preferably on-premise docker hub, however in this case private/public.
+Jenkins make use of ansible playbook to deploy application stack on the other aws instance meant for the same. 
+
+
+Room for improvement
+--------------------
+
+Instead of creating a single instance for application deployment, we can create a AWS load balancer and AWS kubernetes cluster and deploy the application. making it highly available and resilient.
+
