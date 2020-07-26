@@ -1,0 +1,52 @@
+version: "3"
+services:
+  web:
+    build: ./web
+    command: npm start
+    networks:
+      - frontend
+    depends_on:
+      - api
+    environment:
+      API_HOST: "http://api:3000"
+      PORT: "3000"
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    # Instead of requiring developers to do "docker-compose up --build", we
+    # could use this. However, for a completely clean developer experience, we
+    # would need to pair that with live-reloading, possibly with nodemon.
+    #volumes:
+    #  - ./web/app.js:/opt/3tier/app.js
+  api:
+    build: ./api
+    command: npm start
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - db
+    environment:
+      DB: "postgres://postgres:secret_password@db/postgres"
+      PORT: "3000"
+      NODE_ENV: development
+    ports:
+      - "3001:3000"
+    # Instead of requiring developers to do "docker-compose up --build", we
+    # could use this. However, for a completely clean developer experience, we
+    # would need to pair that with live-reloading, possibly with nodemon.
+    #volumes:
+    #  - ./api/app.js:/opt/3tier/app.js
+  db:
+    image: postgres:9.4
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: secret_password
+networks:
+  backend:
+  frontend:
+volumes:
+  db-data:
