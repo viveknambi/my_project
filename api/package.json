@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "express": "~4.13.1",
+    "express": "~4.17.3",
     "pg": "5.2.1",
     "node-uuid": "1.4.7"
   }
